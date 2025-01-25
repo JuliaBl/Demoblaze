@@ -13,12 +13,12 @@ test.describe('Login/Logout to Demoblaze', () => {
        await loginPage.goto();  
     })
 
-
     test('should be able to successfully login', async () => {
       await header.clickLogInButton();
       await loginPage.enterUsername(USER_NAME);
       await loginPage.enterPassword(PASSWORD);
       await loginPage.clickLogIn();
+      expect(await loginPage.isLoginModalWindowVisible()).toBeFalsy();
       const welcomeText = await header.getWelcomeUserText();
       expect(welcomeText).toEqual(`Welcome ${USER_NAME}`);
     })
@@ -50,7 +50,7 @@ test.describe('Login/Logout to Demoblaze', () => {
     test('should be possible to close modal window login', async () => {
       await header.clickLogInButton();
       await loginPage.clickClose();
-      expect(await header.isLogInLinkVisible()).toBeTruthy();
+      expect(await loginPage.isLoginModalWindowVisible()).toBeFalsy();
     })
 
     test('should be possible to log out from Demoblaze', async () => {

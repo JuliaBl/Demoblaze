@@ -1,4 +1,4 @@
-import { Page } from '@playwright/test';
+import { expect, Page } from '@playwright/test';
 
 export class BasePage {
     readonly page: Page;
@@ -10,4 +10,12 @@ export class BasePage {
     async goto() {
         await this.page.goto('/index.html');
     }
+
+    async alertListener(errorMessage: string) {
+        this.page.on('dialog', async (dialog) => {
+           const message = dialog.message();
+           expect(message).toEqual(errorMessage);
+           await dialog.accept();
+         })
+    }    
 }

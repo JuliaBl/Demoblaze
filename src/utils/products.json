@@ -1,0 +1,24 @@
+{ 
+    "products": {
+        "monitors": [
+            {
+                "name": "Apple monitor 24",
+                "price": "400"
+            },
+            {
+                "name": "ASUS Full HD",
+                "price": "230"
+            }
+        ],
+        "phones": [
+            {
+                "name": "Nexus 6",
+                "price": "650"
+            },
+            {
+                "name": "Iphone 6 32gb",
+                "price": "790"
+            }
+        ]
+    }
+}

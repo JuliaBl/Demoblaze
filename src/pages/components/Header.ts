@@ -1,6 +1,6 @@
-import { expect, Locator, Page } from "@playwright/test";
+import { Locator, Page } from "@playwright/test";
 import { LoginPage } from "../LoginPage";
-
+import { CartPage } from "../CartPage";
 
 export class Header {
     page: Page;
@@ -25,20 +25,26 @@ export class Header {
     }
 
     async clickLogInButton(): Promise<LoginPage> {
-        await this.logInLink.waitFor({ state: "visible", timeout: 3000 });
+        await this.logInLink.waitFor({ state: "visible", timeout: 5000 });
         await this.logInLink.click();
         return new LoginPage(this.page);
       }
+    
+    async clickOnCart(): Promise<CartPage> {
+        await this.cartLink.waitFor({ state: "visible", timeout: 5000 });
+        await this.cartLink.click();
+        return new CartPage(this.page);
+      }  
 
     async getWelcomeUserText(): Promise<null | string> {
-        await this.welcomeUser.waitFor({ state: "visible", timeout: 3000 });
+        await this.welcomeUser.waitFor({ state: "visible", timeout: 5000 });
         return await this.welcomeUser.textContent();
     }
     
     async logout() {
-      await this.logOutLink.waitFor();
+      await this.logOutLink.waitFor({ state: "visible", timeout: 5000 });
       await this.logOutLink.click();
-      await this.logInLink.waitFor({ state: "visible", timeout: 3000 });
+      await this.logInLink.waitFor({ state: "visible", timeout: 5000 });
     }
 
     async isLogInLinkVisible() {
